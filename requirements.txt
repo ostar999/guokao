@@ -1,3 +1,5 @@
-pyqt5
-pandas
-openpyxl
+pyqt5==5.15.7
+pandas==1.5.3
+openpyxl==3.0.10
+
+
