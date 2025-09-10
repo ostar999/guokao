@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up 32-bit Python
+      - name: Set up Python (64-bit)
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          architecture: 'x86'   # ✅ 强制使用 32 位 Python
+          architecture: 'x64'   # 强制 64位
 
       - name: Install dependencies
         run: |
@@ -25,12 +25,15 @@ jobs:
           pip install pyinstaller
           pip install -r requirements.txt
 
-      - name: Build EXE
+      - name: Build EXE (onefile)
         run: |
-          pyinstaller --noconsole --windowed --name "国考数据清洗工具" --icon icon.ico excel_gui6.py
+          pyinstaller --onefile --windowed --noconsole ^
+            --name "国考数据清洗工具" ^
+            --icon icon.ico ^
+            excel_gui6.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: exe-build-32bit
+          name: exe-build
           path: dist/*
