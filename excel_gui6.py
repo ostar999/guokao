@@ -1,14 +1,14 @@
 import sys
 import os
 import pandas as pd
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QTextEdit, QLabel, QLineEdit, QFileDialog, QMessageBox,
     QListWidget, QListWidgetItem, QInputDialog
 )
-from PyQt6.QtCore import QDateTime, Qt
-from PyQt6.QtGui import QDesktopServices, QDragEnterEvent, QDropEvent
-from PyQt6.QtCore import QUrl
+from PyQt5.QtCore import QDateTime, Qt
+from PyQt5.QtGui import QDesktopServices, QDragEnterEvent, QDropEvent
+from PyQt5.QtCore import QUrl
 
 class ExcelCleaner(QMainWindow):
     def __init__(self):
