@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build EXE
-        run: pyinstaller --onefile --windowed --noconsole --name "国考数据清洗工具_32bit" --icon icon.ico excel_gui6.py
+        run: pyinstaller --noconsole --windowed --name "国考数据清洗工具" --icon icon.ico --hidden-import=numpy.core._multiarray_umath --hidden-import=numpy.core._dtype_ctypes --hidden-import=numpy.core._methods --hidden-import=numpy.lib.format excel_gui6.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
