@@ -1,17 +1,15 @@
-name: Build EXE with PyInstaller
+name: Build_64 EXE with PyInstaller
 
 on:
   push:
     tags:
-      - 'v*'   # 推送 v1.0.0 这种标签时触发
+      - 'v*'   # 推送 v1.0.0 这样的标签时触发
   workflow_dispatch: # 手动触发
 
 jobs:
   build-windows:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        arch: [x86]  # 同时打包 32 位和 64 位
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,21 +17,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-          architecture: ${{ matrix.arch }}
+          python-version: '3.10'   # PyQt6 需要 Python 3.8+
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install numpy==1.24.4 pandas==1.5.3
+          python -m pip install --upgrade pip
+          pip install pyinstaller
           pip install -r requirements.txt
 
       - name: Build EXE
-        run: pyinstaller --noconsole --windowed --name "国考数据清洗工具" --icon icon.ico --hidden-import=numpy.core._multiarray_umath --hidden-import=numpy.core._dtype_ctypes --hidden-import=numpy.core._methods --hidden-import=numpy.lib.format excel_gui6.py
-
+        run: pyinstaller --onefile --windowed --noconsole --name "国考数据清洗工具_64bit" --icon icon.ico excel_gui7.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: exe-build-${{ matrix.arch }}
+          name: exe-build
           path: dist/*
