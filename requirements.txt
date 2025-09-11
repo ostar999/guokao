@@ -1,4 +1,14 @@
-pyqt5==5.15.9
-pandas==1.5.3
-openpyxl==3.1.2
+# 通用依赖
+pyinstaller==5.13.2
+pyqt5==5.15.11
+
+# 数据处理依赖
+pandas==1.1.5
+numpy==1.19.3
+
+# 其他依赖
+openpyxl==3.0.10
+xlrd==1.2.0
+
+
 
